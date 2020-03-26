@@ -33,7 +33,7 @@ router.post('/login', async(req, res) => {
     try {
       // Buscamos email en DB
       const user = await User.findOne({email: body.email});
-      
+  
       // Evaluamos si existe el usuario en DB
       if(!user){
         return res.status(400).json({
@@ -50,9 +50,9 @@ router.post('/login', async(req, res) => {
       
       // Generar Token
       let token = jwt.sign({
-        userId: user._id
+        user_id: user._id
       }, 'secret', { expiresIn: 60 * 60 * 24 * 30}) // Expira en 30 días
-      
+ 
       // Pasó las validaciones
       return res.json({
         user,

@@ -5,9 +5,9 @@ const {verifyAuth} = require('../middlewares/verifyAuth.js');
 
 //GET users listing
 router.get('/',verifyAuth, async(req,res) => {
-    //console.log(req.decoded.data._id);
     try {
-        const user = await User.findOne({ _id: req.decoded.data._id });
+        console.log("RUTA_USERS: ",req.decoded);
+        const user = await User.findOne({ _id: req.decoded.user_id });
 
         res.status(201).json({
             title: 'Usuario Autorizado',
@@ -23,6 +23,10 @@ router.get('/',verifyAuth, async(req,res) => {
             });     
 
         }    
+ });
+ 
+ router.get('/a', async(req,res) =>{
+    res.send("bien");
  });
 
 module.exports = router;
