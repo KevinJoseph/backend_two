@@ -2,10 +2,9 @@
   "name": "two",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "devbabel": "nodemon src/server.js --exec babel-node",
-    "start": "babel-node stc/server.js --exec"
+    "start": "babel-node src/server.js --exec"
   },
   "keywords": [],
   "author": "",
