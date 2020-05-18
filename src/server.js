@@ -7,8 +7,9 @@ const app = express();
 
 //Connect to Database
 const mongoose = require('mongoose');
-const uri = 'mongodb://localhost:27017/demo';
-const options = {useNewUrlParser: true, useCreateIndex:true};
+const uri = 'mongodb+srv://vekjs:p131471483@cluster0-yzzb4.mongodb.net/test?retryWrites=true&w=majority';
+const options = {useNewUrlParser: true, useUnifiedTopology:true};
+
 
 mongoose.connect(uri, options)
     .then(
@@ -16,6 +17,7 @@ mongoose.connect(uri, options)
         err => {console.log(err)}
     );
 
+    
 //Middleware
 app.use(morgan('tiny'));
 app.use(cors());
@@ -25,6 +27,8 @@ app.use(express.urlencoded({extended:true}));
 //Routes
 app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/user'));
+app.use('/solicitud', require('./routes/solicitud'));
+
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
