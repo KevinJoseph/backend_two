@@ -16,11 +16,11 @@ mongoose.connect(uri, options)
         () => {console.log('Connect Database')},
         err => {console.log(err)}
     );
-
     
 //Middleware
 app.use(morgan('tiny'));
 app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
@@ -28,14 +28,12 @@ app.use(express.urlencoded({extended:true}));
 app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/user'));
 app.use('/solicitud', require('./routes/solicitud'));
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
 app.use(history());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../','public')));
+
 
 app.set('puerto', process.env.PORT || 3000);
 app.listen(app.get('puerto'), () => {
